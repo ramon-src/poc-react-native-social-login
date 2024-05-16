@@ -2,6 +2,15 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
+https://docs.expo.dev/app-signing/local-credentials/
+keytool -genkey -v -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -storepass 44fbcc5d61d3dd6cd64eba8f4e643272 -keypass bc1bc667f73266f63633f7494c6aab34 -alias b55b4332d34ef615b3a6f42aadc3a801 -keystore release.keystore -dname "CN=com.reactnative.rnpocqrcode,OU=,O=,L=,S=,C=US"
+
+npx expo prebuild, THEN npx expo run:android
+
+      "eas": {
+        "projectId": "435a5935-6ddb-44f0-a097-eb541ed45d67"
+      }
+
 ## Get started
 
 1. Install dependencies

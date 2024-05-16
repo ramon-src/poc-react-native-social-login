@@ -1,8 +1,8 @@
 import { SupabaseProvider } from "@/infra/supabase/SupabaseContext";
-import { SplashScreen, Stack } from "expo-router";
+import { Stack } from "expo-router";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 const Layout = () => {
   return (
     <SupabaseProvider>

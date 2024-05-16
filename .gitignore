@@ -23,3 +23,5 @@ android
 ios
 build-*
 .env
+android/keystores/release.keystore
+credentials.json
