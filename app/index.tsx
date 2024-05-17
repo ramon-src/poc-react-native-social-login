@@ -1,7 +1,7 @@
 import { router } from "expo-router";
+import React from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-
-import NewTutorial from "./new-tutorial";
+import GoogleButton from "./xgooglebutton";
 
 const IndexPage = () => {
   return (
@@ -15,7 +15,7 @@ const IndexPage = () => {
       <Pressable style={styles.button} onPress={() => router.push("/(tabs)")}>
         <Text style={styles.text}>x</Text>
       </Pressable>
-      <NewTutorial />
+      <GoogleButton />
     </View>
   );
 };
