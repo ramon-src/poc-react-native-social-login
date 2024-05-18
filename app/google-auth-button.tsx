@@ -4,13 +4,12 @@ import {
   statusCodes,
 } from "@react-native-google-signin/google-signin";
 
-import { supabase } from "@/infra/supabase";
+import { useSupabase } from "@/infra/supabase/SupabaseContext";
 
-export default function GoogleButton() {
-  console.log(process.env.EXPO_PUBLIC_GOOGLE_WEB_ID);
+export default function GoogleAuthButton() {
+  const { signInWithIdToken } = useSupabase();
 
   GoogleSignin.configure({
-    // scopes: ["https://www.googleapis.com/auth/drive.readonly"],
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_ID,
   });
 
@@ -21,14 +20,9 @@ export default function GoogleButton() {
       try {
         await GoogleSignin.hasPlayServices();
         const userInfo = await GoogleSignin.signIn();
-        console.log("userInfo", userInfo);
 
         if (userInfo.idToken) {
-          const { data, error } = await supabase.auth.signInWithIdToken({
-            provider: "google",
-            token: userInfo.idToken,
-          });
-          console.log("AUTHENTICATED", error, data);
+          await signInWithIdToken(userInfo.idToken);
         } else {
           throw new Error("no ID token present!");
         }

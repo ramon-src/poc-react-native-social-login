@@ -1,23 +1,11 @@
-import { router } from "expo-router";
+import { useAuth } from "@/services/auth/AuthContext";
 import React from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import GoogleButton from "./xgooglebutton";
-
+import { StyleSheet } from "react-native";
+import HomePage from "./(tabs)";
+import LoginPage from "./login-page";
 const IndexPage = () => {
-  return (
-    <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-      <Text>dsasd</Text>
-      <TextInput placeholder="Username" style={styles.input} />
-      <TextInput placeholder="Password" style={styles.input} />
-      <Pressable style={styles.button} onPress={() => router.push("/(tabs)")}>
-        <Text style={styles.text}>Login</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={() => router.push("/(tabs)")}>
-        <Text style={styles.text}>x</Text>
-      </Pressable>
-      <GoogleButton />
-    </View>
-  );
+  const { isLoggedIn } = useAuth();
+  return isLoggedIn ? <HomePage /> : <LoginPage />;
 };
 
 const styles = StyleSheet.create({

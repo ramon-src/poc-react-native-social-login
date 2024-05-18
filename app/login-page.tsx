@@ -1,3 +1,4 @@
+import { supabase } from "@/infra/supabase";
 import React, { useState } from "react";
 import {
   Alert,
@@ -7,8 +8,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-
-import { supabase } from "@/infra/supabase";
+import GoogleAuthButton from "./google-auth-button";
 
 // Tells Supabase Auth to continuously refresh the session automatically if
 // the app is in the foreground. When this is added, you will continue to receive
@@ -22,7 +22,7 @@ AppState.addEventListener("change", (state) => {
   }
 });
 
-export default function Auth() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -73,6 +73,7 @@ export default function Auth() {
           autoCapitalize="none"
         />
       </View>
+      <GoogleAuthButton></GoogleAuthButton>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button
           title="Sign in"

@@ -1,8 +1,9 @@
-import { Link, useNavigation } from "expo-router";
+import { Link } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { Button, FlatList, Text, View } from "react-native";
 
 import { getLinks } from "@/infra/supabase/links/getLinks";
+import { useAuth } from "@/services/auth/AuthContext";
 
 const mockList = [{ id: 1, link: "https://something.qrcode" }];
 
@@ -11,6 +12,7 @@ type QRCodeLinks = {
   link: string;
 };
 const HomePage = () => {
+  const { logOut } = useAuth();
   const [list, setList] = useState([] as QRCodeLinks[]);
 
   useEffect(() => {
@@ -22,7 +24,6 @@ const HomePage = () => {
     setList(data as QRCodeLinks[]);
   }
 
-  const navigation = useNavigation();
   return (
     <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
       <Link href="/">tiasdsda</Link>
@@ -30,6 +31,7 @@ const HomePage = () => {
         data={list}
         renderItem={({ item }) => <Text>{item.link}</Text>}
       />
+      <Button title="Log out" onPress={() => logOut()} />
     </View>
   );
 };
